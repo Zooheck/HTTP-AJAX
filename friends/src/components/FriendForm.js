@@ -1,8 +1,8 @@
 import React from 'react'
-
+import '../App.css'
 const FriendForm = (props) => {
   return (
-    <div>
+    <div className="form-container">
       <form>
           <input
           required
