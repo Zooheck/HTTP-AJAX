@@ -29,7 +29,7 @@ class App extends Component {
   }
   submitFriend = (event) => {
     event.preventDefault()
-    const newFriendList = [...this.state.friends, {name: this.state.newFriendName, age: this.state.newFriendAge, email: this.state.newFriendEmail}]
+    const newFriendList = [...this.state.friends, {id: (this.state.friends.length + 1),name: this.state.newFriendName, age: this.state.newFriendAge, email: this.state.newFriendEmail}]
     this.setState({
       friends: newFriendList,
       newFriendName: '',
