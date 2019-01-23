@@ -30,3 +30,10 @@
     transform: rotate(360deg);
   }
 }
+.friend-card {
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: auto;
+  margin-bottom: 20px;
+  width: 25%;
+}
