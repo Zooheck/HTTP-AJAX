@@ -45,7 +45,6 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar />
-        <h1>Friend list:</h1>
         <Route exact path="/" render={props => <FriendList {...props} friends={this.state.friends} />} />
         <Route path="/add-friend" render={props => <FriendForm {...props} newFriendName={newFriendName} newFriendAge={newFriendAge} newFriendEmail={newFriendEmail} handleInputChange={this.handleInputChange} submitFriend={this.submitFriend}/>} />
 
