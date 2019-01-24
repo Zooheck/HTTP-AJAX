@@ -4,3 +4,7 @@
     justify-content: space-around;
     margin-bottom: 30px;
 }
+
+.active {
+    border: 1px solid red;
+}

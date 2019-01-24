@@ -9,9 +9,12 @@ import Navbar from './components/Navbar'
 class App extends Component {
   state = {
     friends: [],
-    newFriendName: '',
-    newFriendAge: 0,
-    newFriendEmail: ''
+    newFriend: {
+      name: '',
+      age: 0,
+      email: ''
+    }
+
   }
   componentDidMount = () => {
     axios
@@ -25,28 +28,39 @@ class App extends Component {
 
   }
   handleInputChange = (event) => {
+    event.persist()
     const { name, value } = event.target
-    this.setState({
-      [name]: value
+    this.setState( previousState => {
+      return {
+        newFriend: {
+          ...previousState.newFriend,
+        [name]: value
+      }}
     })
   }
   submitFriend = (event) => {
     event.preventDefault()
-    const newFriendList = [...this.state.friends, {id: (this.state.friends.length + 1),name: this.state.newFriendName, age: this.state.newFriendAge, email: this.state.newFriendEmail}]
-    this.setState({
-      friends: newFriendList,
-      newFriendName: '',
-      newFriendAge: 0,
-      newFriendEmail: ''
-    })
+    axios.post('http://localhost:5000/friends', this.state.newFriend )
+      .then(response => {
+        this.setState({
+          friends: response.data
+        })
+      })
+    // const newFriendList = [...this.state.friends, {id: (this.state.friends.length + 1),name: this.state.newFriend.name, age: this.state.newFriend.age, email: this.state.newFriendEmail}]
+    // this.setState({
+    //   friends: newFriendList,
+    //   newFriendName: '',
+    //   newFriendAge: 0,
+    //   newFriendEmail: ''
+    // })
   }
   render() {
-    const { newFriendName, newFriendAge, newFriendEmail } = this.state
+    const { name, age, email } = this.state.newFriend
     return (
       <div className="App">
         <Navbar />
         <Route exact path="/" render={props => <FriendList {...props} friends={this.state.friends} />} />
-        <Route path="/add-friend" render={props => <FriendForm {...props} newFriendName={newFriendName} newFriendAge={newFriendAge} newFriendEmail={newFriendEmail} handleInputChange={this.handleInputChange} submitFriend={this.submitFriend}/>} />
+        <Route path="/add-friend" render={props => <FriendForm {...props} newFriendName={name} newFriendAge={age} newFriendEmail={email} handleInputChange={this.handleInputChange} submitFriend={this.submitFriend}/>} />
 
       </div>
     );

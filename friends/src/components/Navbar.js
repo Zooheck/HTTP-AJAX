@@ -4,7 +4,7 @@ import './nav-bar.css'
 const Navbar = () => {
   return (
     <div className="navbar">
-      <NavLink to="/">Friend List</NavLink>
+      <NavLink exact to="/">Friend List</NavLink>
       <NavLink to="/add-friend">Add New Friend</NavLink>
     </div>
   )
