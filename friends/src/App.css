@@ -38,11 +38,3 @@
   margin: auto;
   margin-bottom: 20px;
 }
-.form-container {
-  margin: auto;
-  margin-bottom: 20px;
-}
-.form-container form {
-  display: flex;
-  flex-direction: column;
-}
