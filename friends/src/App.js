@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom'
 import './App.css';
 import axios from 'axios'
+import FriendList from './components/FriendList'
 import Friend from './components/Friend';
 import FriendForm from './components/FriendForm'
+import Navbar from './components/Navbar'
 class App extends Component {
   state = {
     friends: [],
@@ -38,19 +41,14 @@ class App extends Component {
     })
   }
   render() {
+    const { newFriendName, newFriendAge, newFriendEmail } = this.state
     return (
       <div className="App">
+        <Navbar />
         <h1>Friend list:</h1>
-        <FriendForm
-        newFriendName={this.state.newFriendName}
-        newFriendAge={this.state.newFriendAge} 
-        newFriendEmail={this.state.newFriendEmail}
-        handleInputChange={this.handleInputChange}
-        submitFriend={this.submitFriend}
-        />
-        {this.state.friends.map(friend => {
-          return <Friend friend={friend}/>
-        })}
+        <Route exact path="/" render={props => <FriendList {...props} friends={this.state.friends} />} />
+        <Route path="/add-friend" render={props => <FriendForm {...props} newFriendName={newFriendName} newFriendAge={newFriendAge} newFriendEmail={newFriendEmail} handleInputChange={this.handleInputChange} submitFriend={this.submitFriend}/>} />
+
       </div>
     );
   }
