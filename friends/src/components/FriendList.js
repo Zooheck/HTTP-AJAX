@@ -5,7 +5,15 @@ const FriendList = (props) => {
     <div>
         <h1>Friend List</h1>
         {props.friends.map(friend => {
-          return <Friend populateForm={props.populateForm} id={friend.id} friend={friend} updateFriend={props.updateFriend} isUpdatingFriend={props.isUpdatingFriend}/>
+          return (
+          <Friend
+            deleteFriend={props.deleteFriend}
+            populateForm={props.populateForm}
+            id={friend.id}
+            friend={friend}
+            updateFriend={props.updateFriend}
+            isUpdatingFriend={props.isUpdatingFriend}/
+            >)
         })}
     </div>
   )

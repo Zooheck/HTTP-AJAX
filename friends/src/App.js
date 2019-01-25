@@ -78,6 +78,16 @@ class App extends Component {
     })
     this.props.history.push('/add-friend');
   }
+  deleteFriend = (id) => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({friends: response.data})
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
   render() {
     const { name, age, email } = this.state.newFriend
     return (
@@ -87,6 +97,7 @@ class App extends Component {
         <FriendList {...props}
           friends={this.state.friends}
           populateForm={this.populateForm}
+          deleteFriend={this.deleteFriend}
           isUpdatingFriend={this.state.isUpdatingFriend}/>} />
         <Route path="/add-friend" render={props =>
         <FriendForm
