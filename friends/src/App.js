@@ -70,9 +70,6 @@ class App extends Component {
         console.log(error)
       })
       this.props.history.push('/')
-      this.setState({
-        isUpdatingFriend: false
-      })
   }
   populateForm = (id) => {
     this.setState({
@@ -103,7 +100,6 @@ class App extends Component {
           updateFriend={this.updateFriend}
           isUpdatingFriend={this.state.isUpdatingFriend}
           />}
-        />
       />
       </div>
     );
