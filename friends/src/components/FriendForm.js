@@ -2,6 +2,14 @@ import React from 'react'
 import '../App.css'
 import './friend-form.css'
 const FriendForm = (props) => {
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (props.isUpdatingFriend) {
+      props.updateFriend();
+    } else {
+      props.submitFriend();
+    }
+  }
   return (
     <div className="form-container">
       <form>
@@ -25,7 +33,7 @@ const FriendForm = (props) => {
           value={props.newFriendEmail}
           onChange={props.handleInputChange}
           placeholder="Email"/>
-          <button onClick={props.submitFriend}>Add New Friend</button>
+          <button onClick={handleSubmit}>{props.isUpdatingFriend ? "Update Friend" : "Add New Friend"}</button>
       </form>
     </div>
   )
